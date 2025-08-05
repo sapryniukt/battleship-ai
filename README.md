@@ -1,4 +1,4 @@
-# Battleship AI
+# [Battleship AI](https://battleship-ai-snowy.vercel.app/)
 
 This project is a web-based 3D implementation of the classic game Battleship, where players can compete against an AI opponent. The application is built with Nuxt.js and features a dynamic and interactive 3D game board rendered with TresJS.
 
