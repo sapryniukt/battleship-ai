@@ -65,6 +65,17 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      contentful: {
+        endpoint: process.env.CONTENTFUL_API_ENDPOINT,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        entryIds: {
+          header: process.env.CONTENTFUL_HEADER_ENTRY_ID,
+          error: process.env.CONTENTFUL_ERROR_ENTRY_ID,
+          cookies: process.env.CONTENTFUL_COOKIE_ENTRY_ID,
+        },
+      },
+
       enableLLM: true,
       defaultLLMProvider: "openai",
       defaultAIStrategy: "llm",
