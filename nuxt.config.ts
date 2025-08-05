@@ -28,14 +28,6 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
   },
 
-  hooks: {
-    "build:done": async () => {
-      await import("./scripts/copy-mustache-templates").then((mod) =>
-        mod.copyMustacheTemplates?.()
-      );
-    },
-  },
-
   css: ["~/assets/css/index.css"],
   devtools: { enabled: true },
   modules: [

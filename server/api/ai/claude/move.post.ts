@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const { model = 'claude-3-haiku-20240307', ...options } = await readBody(event);
   const config = useRuntimeConfig();
 
-  const prompt = makePrompt({ ...options });
+  const prompt = await makePrompt({ ...options });
 
   try {
     const client = new Anthropic({

@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const { model, temperature = 0.7, ...options } = await readBody(event);
   const config = useRuntimeConfig();
 
-  const prompt = makePrompt({ ...options });
+  const prompt = await makePrompt({ ...options });
 
   try {
     const openai = await new OpenAI({ apiKey: config.private.openaiApiKey });

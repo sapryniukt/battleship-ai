@@ -1,11 +1,13 @@
-import fs from 'fs';
-import mustache from 'mustache';
-import path from 'path';
+import mustache from "mustache";
+import { readTemplate } from "~/server/utils/templates/readTemplate";
 
-export function makePrompt(options: object): string {
-  const __dirname = path.dirname(new URL(import.meta.url).pathname);
-  const template = fs.readFileSync(path.join(__dirname, 'prompt.mustache'), 'utf8');
-  const prompt = mustache.render(template, options, {}, { escape: (value: string) => value });
+export async function makePrompt(options: object): Promise<string> {
+  const prompt = mustache.render(
+    await readTemplate("prompt.mustache"),
+    options,
+    {},
+    { escape: (value: string) => value }
+  );
 
   return prompt;
 }

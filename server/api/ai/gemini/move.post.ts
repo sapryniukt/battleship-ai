@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const { model, ...options } = await readBody(event);
   const config = useRuntimeConfig();
 
-  const prompt = makePrompt({ ...options });
+  const prompt = await makePrompt({ ...options });
 
   try {
     const ai = new GoogleGenAI({ apiKey: config.private.googleAiApiKey });
