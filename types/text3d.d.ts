@@ -1,4 +1,4 @@
-import type { Vector3 } from "three";
+import type { Vector3 } from 'three';
 
 export interface JsonElement {
   content: string;
@@ -45,7 +45,7 @@ export interface Text3DProps {
    * Position of the text group in 3D space.
    * @default new Vector3()
    */
-  position?: Pick<Vector3, "x" | "y" | "z">;
+  position?: Pick<Vector3, 'x' | 'y' | 'z'>;
 
   /**
    * Delay before the text appears.
@@ -95,7 +95,7 @@ export interface TextMeshOptions {
   lineHeight: number;
   fontWeight: string;
   defaultColor: string;
-  position: Pick<Vector3, "x" | "y" | "z">;
+  position: Pick<Vector3, 'x' | 'y' | 'z'>;
   inverse: boolean;
   rotation: number;
   maxWidth?: number;

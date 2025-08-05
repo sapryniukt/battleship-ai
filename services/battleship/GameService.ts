@@ -23,7 +23,7 @@ export function initializeBoard(): Board {
 export function placeShipsRandomly(board: Board): [Board, Ship[]] {
   const list = shipLengths.entries();
   const placedShips: Ship[] = [];
-   
+
   let [name, length] = list.next().value ?? [];
 
   while (length) {

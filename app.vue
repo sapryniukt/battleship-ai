@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { SpeedInsights } from "@vercel/speed-insights/vue";
-import { Analytics } from "@vercel/analytics/nuxt";
+import { SpeedInsights } from '@vercel/speed-insights/vue';
+import { Analytics } from '@vercel/analytics/nuxt';
 
 const isLoading = ref(true);
 const startPreloadAnimation = ref(false);
 
-provide("isLoading", isLoading);
-provide("startPreloadAnimation", startPreloadAnimation);
+provide('isLoading', isLoading);
+provide('startPreloadAnimation', startPreloadAnimation);
 
 const handleFinishLoading = () => {
-  console.log("Loading finished!");
+  console.log('Loading finished!');
   isLoading.value = false;
 };
 

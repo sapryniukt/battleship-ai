@@ -3,11 +3,7 @@ import type { Board, Coordinate, LLMResponse } from '~/types/battleship';
 export interface LLMProvider {
   name: string;
   model: string;
-  suggestMove(
-    board: Board,
-    context: GameContext,
-    model: string
-  ): Promise<LLMResponse>;
+  suggestMove(board: Board, context: GameContext, model: string): Promise<LLMResponse>;
   getConfidence(): number;
 }
 

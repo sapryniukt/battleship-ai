@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CookieEntry } from "~/types/markdown";
+import type { CookieEntry } from '~/types/markdown';
 
 const props = defineProps<{
   controlButton?: boolean;
@@ -7,28 +7,28 @@ const props = defineProps<{
 
 const { moduleOptions } = useCookieControl();
 
-moduleOptions.barPosition = "bottom-right";
+moduleOptions.barPosition = 'bottom-right';
 moduleOptions.colors = {
-  barTextColor: "#f3f4f6",
-  barBackground: "#404040",
-  barButtonHoverTextColor: "#f3f4f6",
-  barButtonColor: "#f3f4f6",
-  barButtonBackground: "#222",
-  barButtonHoverBackground: "#111",
-  barButtonHoverColor: "#f3f4f6",
-  modalBackground: "#404040",
-  modalTextColor: "#f3f4f6",
-  modalButtonColor: "#f3f4f6",
-  modalButtonBackground: "#222",
-  modalButtonHoverBackground: "#111",
-  modalButtonHoverColor: "#f3f4f6",
-  controlButtonBackground: props.controlButton ? "#222" : "transparent",
-  controlButtonHoverBackground: props.controlButton ? "#111" : "transparent",
-  controlButtonHoverColor: "#f3f4f6",
-  controlButtonIconColor: props.controlButton ? "#f3f4f6" : "transparent",
+  barTextColor: '#f3f4f6',
+  barBackground: '#404040',
+  barButtonHoverTextColor: '#f3f4f6',
+  barButtonColor: '#f3f4f6',
+  barButtonBackground: '#222',
+  barButtonHoverBackground: '#111',
+  barButtonHoverColor: '#f3f4f6',
+  modalBackground: '#404040',
+  modalTextColor: '#f3f4f6',
+  modalButtonColor: '#f3f4f6',
+  modalButtonBackground: '#222',
+  modalButtonHoverBackground: '#111',
+  modalButtonHoverColor: '#f3f4f6',
+  controlButtonBackground: props.controlButton ? '#222' : 'transparent',
+  controlButtonHoverBackground: props.controlButton ? '#111' : 'transparent',
+  controlButtonHoverColor: '#f3f4f6',
+  controlButtonIconColor: props.controlButton ? '#f3f4f6' : 'transparent'
 };
 
-const cookie = useContentEntry<CookieEntry>("cookies");
+const cookie = useContentEntry<CookieEntry>('cookies');
 </script>
 
 <template>

@@ -5,5 +5,5 @@ type BaseComponent = {
 
 export type ButtonComponentProps = BaseComponent & {
   outline?: boolean;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
 };

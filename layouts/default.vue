@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { HeaderMarkdown } from "~/types/markdown";
-const startPreloadAnimation = inject<Ref<boolean>>("startPreloadAnimation");
+import type { HeaderMarkdown } from '~/types/markdown';
+const startPreloadAnimation = inject<Ref<boolean>>('startPreloadAnimation');
 
 const { onAfterLoop } = useRenderLoop();
 onAfterLoop(({ elapsed }: { elapsed: number }) => {
@@ -9,16 +9,14 @@ onAfterLoop(({ elapsed }: { elapsed: number }) => {
   }
 });
 
-const doc = useContentEntry<HeaderMarkdown>("header");
+const doc = useContentEntry<HeaderMarkdown>('header');
 const isMenuOpened = ref(false);
 const closeMenu = ref<() => void>(() => {});
 
-provide("isMenuOpened", isMenuOpened);
-provide("closeMenu", closeMenu);
+provide('isMenuOpened', isMenuOpened);
+provide('closeMenu', closeMenu);
 
-const lockScrollClass = computed(() =>
-  isMenuOpened.value ? "disable-scroll" : ""
-);
+const lockScrollClass = computed(() => (isMenuOpened.value ? 'disable-scroll' : ''));
 const prefersReducedMotion = useReducedMotion();
 
 watchEffect(() => {
@@ -26,12 +24,12 @@ watchEffect(() => {
 
   useHead({
     htmlAttrs: {
-      class: "dark text-foreground",
+      class: 'dark text-foreground'
     },
     titleTemplate: (titleChunk?: string) =>
       titleChunk && doc.value?.titles?.general
         ? `${titleChunk} | ${doc.value.titles.general}`
-        : (doc.value?.titles?.base ?? ""),
+        : (doc.value?.titles?.base ?? '')
   });
 });
 

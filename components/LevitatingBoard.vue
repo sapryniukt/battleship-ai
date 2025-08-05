@@ -13,7 +13,6 @@ const cameraControls = shallowRef();
 const isTouchDevice = useMediaQuery('(pointer: coarse)');
 const polarSpeed = computed(() => (isTouchDevice.value ? 0 : 1));
 
-
 useCameraPosition(controlsState, container);
 
 const toggleCameraControllRotation = (angle?: 0 | Math['PI']) => {

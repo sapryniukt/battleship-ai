@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { HeaderMarkdown } from "~/types/markdown";
+import type { HeaderMarkdown } from '~/types/markdown';
 
 const { isMobile } = useBreakpoints();
-const isMenuOpened = inject<Ref<boolean>>("isMenuOpened");
-const closeMenu = inject<Ref<() => void>>("closeMenu");
-const doc = useContentEntry<HeaderMarkdown>("header");
+const isMenuOpened = inject<Ref<boolean>>('isMenuOpened');
+const closeMenu = inject<Ref<() => void>>('closeMenu');
+const doc = useContentEntry<HeaderMarkdown>('header');
 
-const menuClass = computed(() => (isMenuOpened?.value ? "active" : ""));
+const menuClass = computed(() => (isMenuOpened?.value ? 'active' : ''));
 
 const toggle = () => {
   if (isMenuOpened) {
@@ -25,12 +25,12 @@ watchEffect(() => {
 
   useHead({
     htmlAttrs: {
-      class: "dark text-foreground",
+      class: 'dark text-foreground'
     },
     titleTemplate: (titleChunk) =>
       titleChunk && doc.value?.titles?.general
         ? `${titleChunk} | ${doc.value.titles.general}`
-        : (doc.value?.titles?.base ?? ""),
+        : (doc.value?.titles?.base ?? '')
   });
 });
 </script>
@@ -56,26 +56,24 @@ watchEffect(() => {
                 'motion-safe:hover:scale-95',
                 'motion-safe:hover:rotate-[18deg]',
                 'hover:brightness-90',
-                'hover:sepia',
+                'hover:sepia'
               ]"
               hydrate-on-idle
             />
           </NuxtLinkLocale>
           <template v-if="!isMobile && !isMenuOpened">
             <div id="divider" class="ml-8 mr-6 h-8 border-r"></div>
-            <BaseButton class="py-2" data-test="menu-button" @click="toggle">{{
-              doc?.menuLabel
-            }}</BaseButton>
+            <BaseButton class="py-2" data-test="menu-button" @click="toggle">{{ doc?.menuLabel }}</BaseButton>
           </template>
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center gap-4">
+          <LazySvgoRotate
+            class="size-12 origin-center cursor-pointer rounded bg-neutral-950 p-2.5 motion-safe:transition-all motion-safe:active:size-10 motion-reduce:active:invert-[.1] motion-reduce:active:sepia"
+            @click.prevent="eventBus.emit('rotate-camera')"
+            hydrate-on-visible
+          />
           <SheetTrigger v-show="isMobile || isMenuOpened">
-            <LazySvgoMenu
-              id="Menu"
-              class="h-10 -scale-x-100"
-              :class="menuClass"
-              hydrate-on-visible
-            />
+            <LazySvgoMenu id="Menu" class="h-10 -scale-x-100" :class="menuClass" hydrate-on-visible />
           </SheetTrigger>
         </div>
       </div>
