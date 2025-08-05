@@ -2,7 +2,7 @@
 import type { BattleshipPlayerConfig } from "~/types/battleship";
 import type { HeaderMarkdown } from "~/types/markdown";
 
-await usePageContentFetch(["header", "about", "footer"]);
+await usePageContentFetch(["header"]);
 
 const doc = useContentEntry<HeaderMarkdown>("header");
 const title = computed(() => doc.value?.titles.battleship);
