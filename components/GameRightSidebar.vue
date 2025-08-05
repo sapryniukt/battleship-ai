@@ -32,18 +32,18 @@ onMounted(() => {
             @click.prevent="eventBus.emit('rotate-camera')"
             hydrate-on-visible
           />
-          <button
-            data-test="menu-toggle-button"
-            class="size-12 p-2.5"
-            @click="toggle"
+          <a
+            href="https://github.com/sapryniukt/battleship-ai"
+            target="_blank"
+            class="rounded bg-neutral-950"
           >
-            <LazySvgoMenu
-              id="Menu"
-              class="h-10 -scale-x-100"
+            <LazySvgoGithub
+              id="Github"
+              class="size-12 p-2.5 invert -scale-x-100"
               :class="menuClass"
               hydrate-on-visible
             />
-          </button>
+          </a>
         </div>
       </SidebarHeader>
       <SidebarContent>
