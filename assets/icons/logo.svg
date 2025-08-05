@@ -1,0 +1,17 @@
+<svg viewBox="0 0 323 497" fill="none" stroke="white"
+    xmlns="http://www.w3.org/2000/svg">
+    <g id="T">
+        <path d="M317 117V210L220.021 181V460.062L103 425.069V146.006L6 117V24L317 117Z"
+            fill-opacity="0.09" stroke-width="11" />
+    </g>
+    <g id="S">
+        <path
+            d="M6 101V194V240.5V287V333.5L219.812 269.562V316.062L6 380V426.5V473L317 380V333.5V287V194V147.5L161.5 194L122.625 205.625L103.188 211.438V164.938L317 101V54.5V8L6 101Z"
+            fill="white" fill-opacity="0.8" stroke-width="11" />
+    </g>
+
+    <g id="L">
+        <path d="M317 396.062V489.062L6 396.062V117V24L103 53.0093V332.069L317 396.062Z"
+            stroke-width="11" />
+    </g>
+</svg>

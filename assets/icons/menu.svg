@@ -1,0 +1,6 @@
+<svg id="Menu" viewBox="0 0 16.5 24" fill="none" stroke="currentColor" stroke-width="1"
+    xmlns="http://www.w3.org/2000/svg">
+    <line class="top" x1="0" y1="6.25" x2="14.5" y2="6.25" />
+    <line class="middle" x1="0" y1="12" x2="16.5" y2="12" />
+    <line class="bottom" x1="0" y1="17.75" x2="11.5" y2="17.75" />
+</svg>
