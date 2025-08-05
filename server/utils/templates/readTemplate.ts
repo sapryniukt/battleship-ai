@@ -1,13 +1,17 @@
 export async function readTemplate(filename: string): Promise<string> {
   const assets = useStorage("assets:server");
-  const template = await assets.getItem<string>(`templates/${filename}`);
-  console.log('template: ', template);
+  const raw = await assets.getItem<string | Uint8Array>(
+    `templates/${filename}`
+  );
 
-  if (!template) {
+  if (!raw) {
     throw new Error(
       `Template "${filename}" not found in server/assets/templates`
     );
   }
+
+  const template =
+    typeof raw === "string" ? raw : new TextDecoder().decode(raw);
 
   return template;
 }
