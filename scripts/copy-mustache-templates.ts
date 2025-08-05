@@ -1,13 +1,17 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const sourceDir = path.resolve('templates');
+const sourceDir = path.resolve("templates");
 const destinations: string[] = [];
 
-if (process.env.NODE_ENV === 'production') {
-  destinations.push(path.resolve('.output/server'), path.resolve('.vercel/output/functions/__nitro.func'));
+if (process.env.NODE_ENV === "production") {
+  destinations.push(
+    path.resolve(".output/server"),
+    path.resolve(".vercel/output/functions/__nitro.func"),
+    path.resolve("/var/task")
+  );
 } else {
-  destinations.push(path.resolve('.nuxt/dev'));
+  destinations.push(path.resolve(".nuxt/dev"));
 }
 
 export function copyMustacheTemplates() {
@@ -16,7 +20,9 @@ export function copyMustacheTemplates() {
     process.exit(1);
   }
 
-  const files = fs.readdirSync(sourceDir).filter((file) => file.endsWith('.mustache'));
+  const files = fs
+    .readdirSync(sourceDir)
+    .filter((file) => file.endsWith(".mustache"));
 
   for (const destDir of destinations) {
     if (!fs.existsSync(destDir)) {
@@ -35,5 +41,5 @@ export function copyMustacheTemplates() {
 copyMustacheTemplates();
 
 export default {
-  copyMustacheTemplates
+  copyMustacheTemplates,
 };

@@ -57,12 +57,6 @@ export default defineNuxtConfig({
     { path: "~/components/ui", pathPrefix: false },
   ],
 
-  nitro: {
-    prerender: {
-      routes: ["/"],
-    },
-  },
-
   runtimeConfig: {
     public: {
       contentful: {
