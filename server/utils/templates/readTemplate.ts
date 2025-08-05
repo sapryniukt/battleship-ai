@@ -1,6 +1,7 @@
 export async function readTemplate(filename: string): Promise<string> {
   const assets = useStorage("assets:server");
   const template = await assets.getItem<string>(`templates/${filename}`);
+  console.log('template: ', template);
 
   if (!template) {
     throw new Error(
