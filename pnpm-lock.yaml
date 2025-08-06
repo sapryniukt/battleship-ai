@@ -38,8 +38,8 @@ importers:
         specifier: 0.11.1
         version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2)))
       '@tresjs/cientos':
-        specifier: ^4.3.0
-        version: 4.3.0(patch_hash=d6bdd7e23b17ce755167a0cdee07d6b5ae49dcc18c68737bf7257d597ce436ff)(@tresjs/core@4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2)))(@types/three@0.174.0)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))
+        specifier: ^4.3.1
+        version: 4.3.1(patch_hash=d6bdd7e23b17ce755167a0cdee07d6b5ae49dcc18c68737bf7257d597ce436ff)(@tresjs/core@4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2)))(@types/three@0.174.0)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))
       '@tresjs/core':
         specifier: ^4.3.3
         version: 4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))
@@ -1628,8 +1628,8 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
 
-  '@tresjs/cientos@4.3.0':
-    resolution: {integrity: sha512-8YvzgqHab1lsRjTX2KAOg+glQfS+YeqF3wB8XB/+I7/IUconYetSiCJHwLb2FArI9iF7as0x3QRhx8Y2msiysg==}
+  '@tresjs/cientos@4.3.1':
+    resolution: {integrity: sha512-3qp6lEtMrFdhxDuASP1Sz/hEi8+xcEpM6Vd6uDJysCh4uRAzyJLlBSbPoR7gVjN12wrhwJIF1AfYEFz/Vhz5ZQ==}
     peerDependencies:
       '@tresjs/core': '>=4.2.1'
       three: '>=0.133'
@@ -8697,7 +8697,7 @@ snapshots:
       '@tanstack/virtual-core': 3.13.2
       vue: 3.5.17(typescript@5.8.2)
 
-  '@tresjs/cientos@4.3.0(patch_hash=d6bdd7e23b17ce755167a0cdee07d6b5ae49dcc18c68737bf7257d597ce436ff)(@tresjs/core@4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2)))(@types/three@0.174.0)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))':
+  '@tresjs/cientos@4.3.1(patch_hash=d6bdd7e23b17ce755167a0cdee07d6b5ae49dcc18c68737bf7257d597ce436ff)(@tresjs/core@4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2)))(@types/three@0.174.0)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))':
     dependencies:
       '@tresjs/core': 4.3.3(patch_hash=fd0fce697ff8ba8e3c91fb7646df9e88e627983684c19dd46a6cbf7cda712733)(three@0.174.0)(typescript@5.8.2)(vue@3.5.17(typescript@5.8.2))
       '@vueuse/core': 12.8.2(typescript@5.8.2)
