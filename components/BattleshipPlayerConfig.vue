@@ -29,7 +29,7 @@ const config = useVModel(props, 'modelValue', emit, {
 const aiModelOptions = computed(() => {
   switch (config.value?.llmProvider) {
     case 'openai':
-      return ['gpt-4o-mini'];
+      return ['gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano', 'gpt-4o-mini'];
     case 'claude':
       return [
         'claude-3-haiku-20240307',
@@ -38,7 +38,7 @@ const aiModelOptions = computed(() => {
         'claude-3-opus-20240229'
       ];
     case 'gemini':
-      return ['gemini-2.0-flash-exp', 'gemini-1.5-pro', 'gemini-1.5-flash'];
+      return ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
     default:
       return [];
   }
