@@ -1,0 +1,190 @@
+on:
+  # Trigger analysis when pushing to your main branches, and when creating a pull request.
+  push:
+    branches:
+      - master
+      - develop
+      - 'releases/**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+name: Main Workflow
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      node-version: ${{ steps.extract.outputs.NODE_VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Extract Node.js version from package.json
+        id: extract
+        run: echo "NODE_VERSION=$(jq -r '.engines.node' package.json | grep -oE '[0-9]+' | head -n 1)" >> $GITHUB_OUTPUT
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.extract.outputs.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run Lint
+        run: pnpm lint
+
+  unit-test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run Tests with Coverage
+        run: pnpm test:unit --coverage
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+
+  sonarqube:
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Disabling shallow clones is recommended for improving the relevancy of reporting
+          fetch-depth: 0
+
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+
+  e2e-test-chromium:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+          cache: 'pnpm'
+
+      - name: Create .env from GitHub secret
+        run: echo "${{ secrets.SECRETS }}" > .env
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Chromium only
+        run: pnpm exec playwright install chromium
+      - name: Build Nuxt app
+        run: pnpm build
+      - name: Run E2E Tests (Chromium)
+        run: pnpm exec nuxi preview & npx wait-on http://localhost:3000 && pnpm exec playwright test --project=chromium
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts-chromium
+          path: |
+            test-results/
+            playwright-report/
+
+  e2e-test-firefox:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+          cache: 'pnpm'
+
+      - name: Create .env from GitHub secret
+        run: echo "${{ secrets.SECRETS }}" > .env
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Firefox system dependencies
+        run: pnpm exec playwright install-deps firefox
+      - name: Install Playwright Firefox only
+        run: pnpm exec playwright install firefox
+      - name: Build Nuxt app
+        run: pnpm build
+      - name: Run E2E Tests (Firefox)
+        run: pnpm exec nuxi preview & npx wait-on http://localhost:3000 && xvfb-run pnpm exec playwright test --project=firefox
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts-firefox
+          path: |
+            test-results/
+            playwright-report/
+
+  e2e-test-webkit:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.setup.outputs.node-version }}
+          cache: 'pnpm'
+
+      - name: Create .env from GitHub secret
+        run: echo "${{ secrets.SECRETS }}" > .env
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install WebKit system dependencies
+        run: pnpm exec playwright install-deps webkit
+      - name: Install Playwright WebKit only
+        run: pnpm exec playwright install webkit
+      - name: Build Nuxt app
+        run: pnpm build
+      - name: Run E2E Tests (Safari)
+        run: pnpm exec nuxi preview & npx wait-on http://localhost:3000 && xvfb-run pnpm exec playwright test --project=webkit --headed
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts-webkit
+          path: |
+            test-results/
+            playwright-report/
