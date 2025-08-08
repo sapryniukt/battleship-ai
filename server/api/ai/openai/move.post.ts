@@ -4,7 +4,7 @@ import { makePrompt } from '~/services/ai/make-prompt';
 import { moveResponseSchema } from '~/services/battleship/schemas/moveSchemas';
 
 export default defineEventHandler(async (event) => {
-  const { model, temperature = 0.7, ...options } = await readBody(event);
+  const { model, ...options } = await readBody(event);
   const config = useRuntimeConfig();
 
   const prompt = await makePrompt({ ...options });
@@ -23,8 +23,6 @@ export default defineEventHandler(async (event) => {
           content: prompt
         }
       ],
-      temperature,
-      max_tokens: 300,
       response_format: {
         type: 'json_schema',
         json_schema: { name: 'battleship_move', schema: z.toJSONSchema(moveResponseSchema) }

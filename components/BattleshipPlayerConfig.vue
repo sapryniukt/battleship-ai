@@ -29,7 +29,7 @@ const config = useVModel(props, 'modelValue', emit, {
 const aiModelOptions = computed(() => {
   switch (config.value?.llmProvider) {
     case 'openai':
-      return ['gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano', 'gpt-4o-mini'];
+      return ['gpt-5', 'gpt-5-mini', 'gpt-5-nano', 'gpt-4.1', 'gpt-4.1-mini', 'gpt-4.1-nano', 'gpt-4o-mini'];
     case 'claude':
       return [
         'claude-3-haiku-20240307',
